@@ -1,6 +1,6 @@
 package com.app.Chronicles.controller;
 
-import com.app.Chronicles.entity.journalEntry;
+import com.app.Chronicles.entity.JournalEntry;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,28 +12,28 @@ public class JournalController {
 
 
     @GetMapping("/getEntries")
-    public List<journalEntry> getAllEntries(){
+    public List<JournalEntry> getAllEntries(){
         return null;
     }
 
     @PostMapping("/addEntry")
-    public boolean addEntry(@RequestBody journalEntry entry){
+    public boolean addEntry(@RequestBody JournalEntry entry){
 
         return true;
     }
 
     @GetMapping("getEntry/{id}")
-    public journalEntry getByid(@PathVariable long id){
+    public JournalEntry getByid(@PathVariable long id){
         return null;
     }
 
     @DeleteMapping("deleteEntry/{id}")
-    public journalEntry deleteEntry(@PathVariable long id){
+    public JournalEntry deleteEntry(@PathVariable long id){
         return null;
     }
 
     @PutMapping("updateEntry/{id}")
-    public journalEntry updateEntry(@PathVariable long id, @RequestBody journalEntry entry){
+    public JournalEntry updateEntry(@PathVariable long id, @RequestBody JournalEntry entry){
         return null;
     }
 }
