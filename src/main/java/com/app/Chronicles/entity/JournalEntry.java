@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class JournalEntry {
 
     @Id
-    private ObjectId id;
+    private ObjectId id;        // every journal will have a unique id
 
     @NonNull
     private String title;

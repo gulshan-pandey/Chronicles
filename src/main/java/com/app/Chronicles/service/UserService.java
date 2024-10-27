@@ -1,5 +1,6 @@
 package com.app.Chronicles.service;
 
+import com.app.Chronicles.entity.JournalEntry;
 import com.app.Chronicles.entity.User;
 import com.app.Chronicles.repository.UserRepo;
 import org.bson.types.ObjectId;
@@ -47,6 +48,7 @@ public class UserService {
     public User findByUsername(String username){
        return userRepo.findByUsername(username);
     }
+
 
 
 }

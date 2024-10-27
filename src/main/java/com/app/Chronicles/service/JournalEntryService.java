@@ -33,29 +33,39 @@ public class JournalEntryService {
             user.getJournalEntries().add(saved);
             userService.saveEntry(user);                    // this is for updating the user with the new journal entry
         } catch (Exception e) {
-            log.error("Exception : " +  e.getMessage());
+            log.error("Exception : " + e.getMessage());
         }
     }
 
     public void saveEntry(JournalEntry entry) {
-            JournalEntry saved = journalRepo.save(entry);
+        JournalEntry saved = journalRepo.save(entry);
     }
 
 
-    public List<JournalEntry> findAll(){
+    public List<JournalEntry> findAll() {
         return journalRepo.findAll();
     }
 
-    public Optional<JournalEntry> findById(ObjectId id){
+    public Optional<JournalEntry> findById(ObjectId id) {
         return journalRepo.findById(id);
     }
 
-    public void deleteById(ObjectId id, String username){
-        User user = userService.findByUsername(username);
-        user.getJournalEntries().removeIf( journal -> journal.getId().equals(id));          // basicallly we are removing the specific reference of the journal from the user table, bcz we are about to delete that journal form the database
+    @Transactional
+    public boolean deleteById(ObjectId id, String username) {
+        boolean removed = false;
+        try {
+            User user = userService.findByUsername(username);
+            removed = user.getJournalEntries().removeIf(journal -> journal.getId().equals(id));// basically we are removing the specific reference of the journal from the user table, bcz we are about to delete that journal form the database
 //         this prevents from data inconsistency
-        userService.saveEntry(user);                    // this is for updating the user with the new journal entry.
-        journalRepo.deleteById(id);
+            if (removed) {                     // remove if the entry is removed from the user table, this can prevent if someone mistakenly gives the another's journal Id
+                userService.saveEntry(user);                    // this is for updating the user with the new journal entry.
+                journalRepo.deleteById(id);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error occured while deleting the journal entry", e);
+        }
+        return removed;
     }
+
 
 }
