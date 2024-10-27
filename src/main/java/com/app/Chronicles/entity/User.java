@@ -28,5 +28,6 @@ public class User {
 
    @DBRef            // use for referencing to somewhere as a ForeignKey in mongoDB
    private List<JournalEntry> journalEntries = new ArrayList<>();
+   private List<String> roles;
 
 }
