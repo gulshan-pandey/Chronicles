@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 //@Setter
 @Data           // is equivalent to @Getter and @Setter
 @NoArgsConstructor
-@Document(collection = "my_journal_entries" )
+@Document(collection = "my_journal_entries")
 public class JournalEntry {
 
     @Id
-    private ObjectId id;        // every journal will have a unique id
+    private ObjectId id;        // every journal will have its unique id
 
     @NonNull
     private String title;
@@ -23,6 +23,5 @@ public class JournalEntry {
     private String content;
 
     private LocalDateTime date;
-
 
 }

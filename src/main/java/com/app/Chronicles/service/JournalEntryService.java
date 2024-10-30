@@ -7,17 +7,21 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+
+
+@Service
 public class JournalEntryService {
 
     private static final Logger log = LoggerFactory.getLogger(JournalEntryService.class);
+
+
     @Autowired
     private JournalRepo journalRepo;
 
@@ -25,7 +29,7 @@ public class JournalEntryService {
     private UserService userService;
 
     @Transactional
-    public void saveEntry(JournalEntry entry, String username) {
+    public void saveNewEntry(JournalEntry entry, String username) {
         try {
             User user = userService.findByUsername(username);
             entry.setDate(LocalDateTime.now());
@@ -37,7 +41,8 @@ public class JournalEntryService {
         }
     }
 
-    public void saveEntry(JournalEntry entry) {
+
+    public void saveExistingEntry(JournalEntry entry) {
         JournalEntry saved = journalRepo.save(entry);
     }
 
@@ -46,9 +51,11 @@ public class JournalEntryService {
         return journalRepo.findAll();
     }
 
+
     public Optional<JournalEntry> findById(ObjectId id) {
         return journalRepo.findById(id);
     }
+
 
     @Transactional
     public boolean deleteById(ObjectId id, String username) {

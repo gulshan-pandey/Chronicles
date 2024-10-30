@@ -1,8 +1,7 @@
 package com.app.Chronicles.entity;
 
 
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -12,22 +11,25 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "user_entries")
+
 @Data
+@Builder
+@Document(collection = "user_entries")
 public class User {
 
    @Id
    private ObjectId id;
 
-   @Indexed(unique = true)       // for doing it by default we need to configure in Application.props
-   @NonNull                    // given by Lombok
-   private  String username;
+   @Indexed(unique = true)
+   @NonNull
+   private String username;
 
    @NonNull
    private String password;
 
-   @DBRef            // use for referencing to somewhere as a ForeignKey in mongoDB
+   @DBRef
    private List<JournalEntry> journalEntries = new ArrayList<>();
-   private List<String> roles;
 
+   @Builder.Default  // Default roles to an empty list in builder
+   private List<String> roles = new ArrayList<>();
 }

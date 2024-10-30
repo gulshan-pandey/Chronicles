@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -24,11 +27,6 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
-
-    @GetMapping
-    public List<User> getAllUsers(){
-        return userService.findAll();
-    }
 
 
 
@@ -42,9 +40,9 @@ public class UserController {
 //        if(userInDb!=null){               // now this will never be null bcz its comming form the authenticated user
             userInDb.setUsername(user.getUsername());
             userInDb.setPassword(user.getPassword());             // password will be stored in the db in hashed format(encrypted)
-            userService.saveNewEntry(userInDb);
+            boolean isSaved = userService.saveNewEntry(userInDb);
 //        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(isSaved,HttpStatus.OK);
     }
 
     @DeleteMapping
