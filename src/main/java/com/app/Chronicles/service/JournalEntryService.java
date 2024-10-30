@@ -19,8 +19,6 @@ import java.util.Optional;
 @Service
 public class JournalEntryService {
 
-    private static final Logger log = LoggerFactory.getLogger(JournalEntryService.class);
-
 
     @Autowired
     private JournalRepo journalRepo;
@@ -37,7 +35,7 @@ public class JournalEntryService {
             user.getJournalEntries().add(saved);
             userService.saveEntry(user);                    // this is for updating the user with the new journal entry
         } catch (Exception e) {
-            log.error("Exception : " + e.getMessage());
+
         }
     }
 

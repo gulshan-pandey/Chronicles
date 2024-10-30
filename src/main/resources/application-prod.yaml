@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: Chronicles
+  data:
+    mongo:
+#      host: localhost
+#      port: 27017
+    mongodb:
+      uri: ${MONGODB_URI}
+      database: my_journal_entries
+      auto-index-creation: true
+#      username: chronicles
+#      password: 1234
+  main:
+    allow-circular-references: true
+
+server:
+  port: 8081
+

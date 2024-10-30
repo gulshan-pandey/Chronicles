@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: Chronicles
+  data:
+    mongo:
+#      host: localhost
+#      port: 27017
+    mongodb:
+      uri: ${MONGODB_URI}
+      database: my_journal_entries
+      auto-index-creation: true
+#      username: chronicles
+#      password: 1234
+  main:
+    allow-circular-references: true
+
+server:
+  port: 8080
+
+
+#logging:
+#  level:
+#    com:
+#      app:
+#        Chronicles: DEBUG
+
+#logging:
+#  level:
+#    root: ERROR # this will log only the error and its upper levels
+
+logging:
+  level:
+    com:
+      app:
+        Chronicles:
+          service:
+            UserService: OFF     # this will completely off the user service logging
