@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableTransactionManagement
@@ -23,4 +24,9 @@ public class ChroniclesApplication {
 	}
 
 	//MongoDatabaseFactory is responsible for making the connection with db, helps to make sessions, MongoTransactionManager also implements PlatformTransactionManager
+
+	@Bean
+	RestTemplate restTemplate(){
+		return new RestTemplate();
+	}
 }
