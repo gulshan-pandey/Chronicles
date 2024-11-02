@@ -39,7 +39,7 @@ public class UserService {
     public boolean saveNewEntry(User user) {
         try {
             user.setPassword(encoder.encode(user.getPassword()));
-            user.setRoles(Arrays.asList("USER"));
+            user.setRoles(List.of("USER"));
             userRepo.save(user);
             return true;
         } catch (Exception e) {

@@ -3,6 +3,7 @@ package com.app.Chronicles.service;
 import com.app.Chronicles.entity.JournalEntry;
 import com.app.Chronicles.entity.User;
 import com.app.Chronicles.repository.JournalRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 
 @Service
+@Slf4j
 public class JournalEntryService {
 
 
@@ -35,13 +37,13 @@ public class JournalEntryService {
             user.getJournalEntries().add(saved);
             userService.saveEntry(user);                    // this is for updating the user with the new journal entry
         } catch (Exception e) {
-
+            log.error("Error occurred while saving the journal entry", e);
         }
     }
 
 
     public void saveExistingEntry(JournalEntry entry) {
-        JournalEntry saved = journalRepo.save(entry);
+        journalRepo.save(entry);
     }
 
 
@@ -67,7 +69,7 @@ public class JournalEntryService {
                 journalRepo.deleteById(id);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Error occured while deleting the journal entry", e);
+            throw new RuntimeException("Error occurred while deleting the journal entry", e);
         }
         return removed;
     }

@@ -8,7 +8,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>log/journalApp.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>log/journalApp-%d{yyyy-MM-dd-HH-mm}.log</fileNamePattern>          <!-- the new Logs will be created every minute  -->
+            <fileNamePattern>log/journalApp-%d{yyyy-MM-dd-HH}.log</fileNamePattern>          <!-- the new Logs will be created every minute  -->
             <maxHistory>10</maxHistory>
             <maxFileSize>10MB</maxFileSize>
         </rollingPolicy>
