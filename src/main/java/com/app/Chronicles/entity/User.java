@@ -1,6 +1,7 @@
 package com.app.Chronicles.entity;
 
 
+import com.app.Chronicles.enums.Sentiment;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -17,6 +18,7 @@ import java.util.List;
 @Document(collection = "user_entries")
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class User {
 
    @Id
@@ -30,6 +32,7 @@ public class User {
    private String password;
 
    private String email;
+
    private boolean sentimentAnalysis;
 
 
@@ -38,4 +41,5 @@ public class User {
 
    @Builder.Default  // Default roles to an empty list in builder
    private List<String> roles = new ArrayList<>();
+
 }
