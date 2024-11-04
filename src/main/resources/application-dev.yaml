@@ -17,6 +17,9 @@ spring:
 server:
   port: 8080
 
+weather:
+  api:
+    key: 06094b9adee861c25642a17a046c2650
 
 #logging:
 #  level:
@@ -28,10 +31,10 @@ server:
 #  level:
 #    root: ERROR # this will log only the error and its upper levels
 
-logging:
-  level:
-    com:
-      app:
-        Chronicles:
-          service:
-            UserService: OFF     # this will completely off the user service logging
+#logging:
+#  level:
+#    com:
+#      app:
+#        Chronicles:
+#          service:
+#            UserService: OFF     # this will completely off the user service logging

@@ -1,6 +1,7 @@
 package com.app.Chronicles.controller;
 
 
+import com.app.Chronicles.cache.AppCache;
 import com.app.Chronicles.entity.User;
 import com.app.Chronicles.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    AppCache appCache;
+
 
     @GetMapping("/all-users")
     public ResponseEntity<?> getAllUsers(){
@@ -32,6 +36,12 @@ public class AdminController {
     @PostMapping("/create-admin")                   // only the Existing admin can create new admin , bcz it has auth on its api
     public ResponseEntity<?> createAdmin(@RequestBody User user){
         return new ResponseEntity<>(userService.createAdmin(user), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/clear-cache")
+    public ResponseEntity<?> clearCache(){
+        appCache.init();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

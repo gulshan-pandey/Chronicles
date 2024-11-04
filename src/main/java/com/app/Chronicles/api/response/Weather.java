@@ -1,6 +1,7 @@
 package com.app.Chronicles.api.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

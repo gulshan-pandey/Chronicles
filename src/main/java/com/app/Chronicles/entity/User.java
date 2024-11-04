@@ -15,6 +15,8 @@ import java.util.List;
 @Data
 @Builder
 @Document(collection = "user_entries")
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
    @Id
@@ -26,6 +28,10 @@ public class User {
 
    @NonNull
    private String password;
+
+   private String email;
+   private boolean sentimentAnalysis;
+
 
    @DBRef
    private List<JournalEntry> journalEntries = new ArrayList<>();
