@@ -2,6 +2,7 @@ package com.app.Chronicles.service;
 
 
 import com.app.Chronicles.api.response.Quotes;
+import com.app.Chronicles.constants.Placeholders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -13,14 +14,13 @@ import java.util.List;
 @Service
 public class QuoteService {
 
-    public static final String API = "http://api.quotable.io/quotes/random" ;
 
     @Autowired
     private RestTemplate restTemplate;
 
     public Quotes getQuote() {
         List<Quotes> quotes = restTemplate.exchange(
-                API,
+                Placeholders.QUOTE_API,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Quotes>>() {}

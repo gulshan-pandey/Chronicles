@@ -6,4 +6,7 @@ public interface Placeholders  {
 
     String CITY = "<CITY>";
 
+    String QUOTE_API = "http://api.quotable.io/quotes/random" ;
+
+
 }

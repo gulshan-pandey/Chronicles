@@ -11,7 +11,7 @@ import java.util.List;
 public class UserRepoImpl {
 
     @Autowired
-    private MongoTemplate mongoTemplate;
+    private MongoTemplate mongoTemplate;            // provides criteria queries for mongodb
 
     public List<User> getUserForSA() {
         Query query = new Query();

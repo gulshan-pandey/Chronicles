@@ -20,16 +20,15 @@ public class AppCache {
     @Autowired
     private ConfigRepo configRepo;
 
-    public Map<String, String> appCache;
+    public Map<String, String> cache;
 
 
     @PostConstruct
     public void init(){
-        appCache = new HashMap<String, String>();
+        cache = new HashMap<String, String>();
         List<JournalConfigs> all = configRepo.findAll();
         for (JournalConfigs journalConfigs : all) {
-            appCache.put(journalConfigs.getKey(),journalConfigs.getValue());
+            cache.put(journalConfigs.getKey(),journalConfigs.getValue());
         }
     }
 }
-

@@ -46,11 +46,9 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User userInDb = userService.findByUsername(username);
-//        if(userInDb!=null){               // now this will never be null bcz its comming form the authenticated user
             userInDb.setUsername(user.getUsername());
             userInDb.setPassword(user.getPassword());             // password will be stored in the db in hashed format(encrypted)
             boolean isSaved = userService.saveNewEntry(userInDb);
-//        }
         return new ResponseEntity<>(isSaved,HttpStatus.OK);
     }
 
@@ -66,10 +64,7 @@ public class UserController {
     public ResponseEntity<?> greet(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Weather weather = weatherService.getWeather("New Delhi");
-        String greeting = " ";
-        if(greeting != null){
-            greeting ="!, Weather feels like " + weather.getCurrent().getFeelslike() + " degree";
-        }
+        String greeting = "!, Weather feels like " + weather.getCurrent().getFeelslike() + " degree";
 
         Quotes quote = quoteService.getQuote();
         String quoteString =" ";

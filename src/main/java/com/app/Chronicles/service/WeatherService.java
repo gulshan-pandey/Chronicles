@@ -22,18 +22,17 @@ public class WeatherService {
     AppCache appCache;
 
     @Autowired
-   private RestTemplate restTemplate;
+   private RestTemplate restTemplate;           // for making API calls and handling the JSON responses
 
 
     public Weather getWeather(String city) {
-        String finalApi = appCache.appCache.get(AppCache.Keys.WEATHER_API.toString()).replace(Placeholders.CITY, city).replace(Placeholders.API_KEY, Apikey);
+        String finalApi = appCache.cache.get(AppCache.Keys.WEATHER_API.toString()).replace(Placeholders.CITY, city).replace(Placeholders.API_KEY, Apikey);
 
         ResponseEntity<Weather> response = restTemplate.exchange(finalApi, HttpMethod.GET, null, Weather.class);
         // the process of converting JSON response into corresponding POJO is called deserialization
 
         return response.getBody();
     }
-
 
 
 }
