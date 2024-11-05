@@ -5,7 +5,6 @@ import com.app.Chronicles.entity.JournalEntry;
 import com.app.Chronicles.entity.User;
 import com.app.Chronicles.repository.UserRepoImpl;
 import com.app.Chronicles.service.EmailService;
-import com.app.Chronicles.service.SentimentAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -21,8 +20,6 @@ public class UserScheduler {
     @Autowired
     UserRepoImpl userRepoImpl;
 
-    @Autowired
-    SentimentAnalysisService sentimentAnalysisService;
 
     @Autowired
     EmailService emailService;

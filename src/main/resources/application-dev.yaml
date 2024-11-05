@@ -14,6 +14,9 @@ spring:
   main:
     allow-circular-references: true
 
+  redis:
+    host: localhost
+    port: 6379
   mail:
     host: smtp.gmail.com
     port: 587
@@ -32,7 +35,7 @@ server:
 
 weather:
   api:
-    key: 06094b9adee861c25642a17a046c2650
+    key: 999b35c4068fbeecd94830b6a758c7c3
 
 #logging:
 #  level:
