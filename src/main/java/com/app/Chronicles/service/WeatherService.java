@@ -36,9 +36,9 @@ public class WeatherService {
 
         ResponseEntity<Weather> response = restTemplate.exchange(finalApi, HttpMethod.GET, null, Weather.class);
         // the process of converting JSON response into corresponding POJO is called deserialization
-            Weather body = response.getBody();
+            Weather body = response.getBody();          // getting the response body
             if(body != null){
-                redisService.set(city,body, 300L);
+                redisService.set(city,body,1l);
             }
             return body;
         }

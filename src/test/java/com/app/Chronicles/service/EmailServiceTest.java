@@ -14,7 +14,7 @@ public class EmailServiceTest {
 
     @Test
     void testMail(){
-        emailService.sendEmail("abc@gmail.com","from Backend","Ignore this mail as it is for testing only");
+        emailService.sendEmail("gulshanpandey7210@gmail.com","from Backend","Ignore this mail as it is for testing only");
     }
 
 

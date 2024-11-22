@@ -35,7 +35,7 @@ public class UserScheduler {
         for (User user : users) {
             List<JournalEntry> journalEntries = user.getJournalEntries();
             List<String> filteredMoods = journalEntries.stream()
-                    .filter(x -> x.getDate().isAfter(LocalDateTime.now().minusDays(10)))
+                    .filter(x -> x.getDate().isAfter(LocalDateTime.now().minusDays(100)))
                     .map( x -> x.getSentiment().toString()).toList();
 
             String mailBody = generateBody(filteredMoods);
@@ -45,7 +45,7 @@ public class UserScheduler {
         }
     }
 
-    private static String generateBody(List<String> filteredMoods) {
+    private  String generateBody(List<String> filteredMoods) {
         HashMap<String,Integer> sentimentMap = new HashMap<>();
         for (String Mood : filteredMoods) {
             if(Mood!=null){

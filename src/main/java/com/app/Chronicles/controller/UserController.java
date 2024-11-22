@@ -9,6 +9,7 @@ import com.app.Chronicles.service.QuoteService;
 import com.app.Chronicles.service.UserService;
 import com.app.Chronicles.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -38,6 +39,20 @@ public class UserController {
     @Autowired
     private QuoteService quoteService;
 
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
+
+    @GetMapping("/redis-test")
+    public String testRedis() {
+        try {
+            redisTemplate.opsForValue().set("test-key", "test-value");
+            String value = redisTemplate.opsForValue().get("test-key");
+            return "Redis Connection Successful. Retrieved value: " + value;
+        } catch (Exception e) {
+            return "Redis Connection Failed: " + e.getMessage();
+        }
+    }
 
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user){
@@ -63,7 +78,7 @@ public class UserController {
     @GetMapping()
     public ResponseEntity<?> greet(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Weather weather = weatherService.getWeather("New Delhi");
+        Weather weather = weatherService.getWeather("Shimla");
         String greeting = "!, Weather feels like " + weather.getCurrent().getFeelslike() + " degree";
 
         Quotes quote = quoteService.getQuote();

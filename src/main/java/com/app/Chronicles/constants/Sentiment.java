@@ -1,4 +1,4 @@
-package com.app.Chronicles.enums;
+package com.app.Chronicles.constants;
 
 public enum Sentiment {
 

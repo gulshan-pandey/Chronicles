@@ -26,7 +26,7 @@ public class UserRepoImpl {
 //        query.addCriteria(Criteria.where("email").ne(null).ne(""));
         query.addCriteria(Criteria.where("email").regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$"));              // replacement of previous 2 lines
         query.addCriteria(Criteria.where("sentimentAnalysis").is(true));
-        query.addCriteria(Criteria.where("roles").in("USER","ADMIN"));          // only send email only to the users and the Admins
+        query.addCriteria(Criteria.where("roles").in("USER","ADMIN"));          // only to the users and the Admins ---> .in() method takes the varargs(basically plays with array)
         return mongoTemplate.find(query, User.class);
     }
 }

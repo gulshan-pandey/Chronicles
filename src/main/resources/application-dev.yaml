@@ -14,20 +14,19 @@ spring:
   main:
     allow-circular-references: true
 
-  redis:
-    host: localhost
-    port: 6379
+
+
   mail:
     host: smtp.gmail.com
     port: 587
-    username: abc@gmail.com           # feel free to add your email
-    password: xxxx xxxx xxxx xxxx               # generate the 16 digit password form the Google app's settings "App passwords" and add it here. Its not the password of your account
+    username: ${MAIL_ID}           # feel free to add your email
+    password:  ${MAIL_PASS}            # generate the 16 digit password form the Google app's settings "App passwords" and add it here. Its not the password of your account
     properties:
       mail:
         smtp:
           auth: true
           starttls:                   # start transport layer security
-            enable: true
+            enable: true              # encrypted text exchanges
 
 
 server:

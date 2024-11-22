@@ -18,7 +18,7 @@ public class AppCache {
     }
 
     @Autowired
-    private ConfigRepo configRepo;
+    private ConfigRepo configRepo;              // for getting all the configs and apis from the db
 
     public Map<String, String> cache;
 

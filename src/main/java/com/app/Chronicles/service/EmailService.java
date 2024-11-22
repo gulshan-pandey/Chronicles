@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
-    private final JavaMailSender mailSender;
+    private final JavaMailSender mailSender;            // SendGrid can also be used to send email
 
     @Autowired
     public EmailService(JavaMailSender mailSender) {

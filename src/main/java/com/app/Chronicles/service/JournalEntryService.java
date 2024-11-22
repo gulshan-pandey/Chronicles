@@ -36,6 +36,7 @@ public class JournalEntryService {
             userService.saveEntry(user);                    // this is for updating the user with the new journal entry
         } catch (Exception e) {
             log.error("Error occurred while saving the journal entry", e);
+            throw new RuntimeException("Error occurred while saving the journal entry", e);
         }
     }
 
@@ -55,7 +56,7 @@ public class JournalEntryService {
     }
 
 
-    @Transactional
+    @Transactional                  // In mongodb the replication is mandatory for atomicity(Transactional) to happen
     public boolean deleteById(ObjectId id, String username) {
         boolean removed = false;
         try {

@@ -1,6 +1,6 @@
 package com.app.Chronicles.entity;
 
-import com.app.Chronicles.enums.Sentiment;
+import com.app.Chronicles.constants.Sentiment;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

@@ -22,7 +22,7 @@ import java.util.Optional;
 @Slf4j              // magic of lombok...♨️... it will inject the getter and setter during compile time
 public class UserService {
 
-//    private static final Logger log = LoggerFactory.getLogger(UserService.class);             // this can be replaced by @Slf4j on the class
+//    private static final Logger log = LoggerFactory.getLogger(UserService.class);             // this can be replaced by @Slf4j annotation
 
 
     @Autowired
@@ -31,12 +31,12 @@ public class UserService {
     private static final PasswordEncoder encoder = new BCryptPasswordEncoder();
 
 
-    public void saveEntry(User user) {
+    public void saveEntry(User user) {          // this method runs when a user makes new journal entry and when he deletes his journal entry
             userRepo.save(user);
     }
 
 
-    public boolean saveNewEntry(User user) {
+    public boolean saveNewEntry(User user) {         // this method is used by 2 controllers --> create new user and update user
         try {
             user.setPassword(encoder.encode(user.getPassword()));
             user.setRoles(List.of("USER"));
@@ -45,8 +45,8 @@ public class UserService {
         } catch (Exception e) {
             log.info("\n\n logger----Error occurred {} {} ",user.getUsername(), e.getMessage());
             log.warn("error was here");
-            log.error("error in error");
-            log.debug(" DEBUG: this will not work by default");
+            log.error("error occurred for {}",user.getUsername(),e);
+            log.debug("DEBUG: this will not work by default");
             log.trace("this will not work by default");
             return false;
         }

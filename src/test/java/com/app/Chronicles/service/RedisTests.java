@@ -13,11 +13,11 @@ public class RedisTests {
 
     @Autowired
     @Qualifier("redisTemplateProvider")  // Ensure correct bean is used
-    RedisTemplate redisTemplate;
+    RedisTemplate<String, String> redisTemplate;
 
     @Test
     public void redistest(){
-       redisTemplate.opsForValue().set("email","abc@gmail.com");
+       redisTemplate.opsForValue().set("salary","l@gmail.com");
 
         Object salary = redisTemplate.opsForValue().get("salary");            // by running this in debugger mode confirms that the connection has established with redis
 

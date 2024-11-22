@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Repository
 public interface ConfigRepo extends MongoRepository<JournalConfigs, ObjectId> {
 
+    // this is for getting all the configs and apis from the database
 }
