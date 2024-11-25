@@ -1,13 +1,14 @@
 package com.app.Chronicles.service;
-
 import com.app.Chronicles.constants.Placeholders;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 
 
 
@@ -17,17 +18,13 @@ public class AIService {
     @Value("${MISTRAL_API_KEY}")
     private String apiKey;
 
-    private final WebClient webClient;
-
-    // Constructor to initialize WebClient
-    public AIService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder
-                .baseUrl(Placeholders.MISTRAL_URL) // Base URL
-                .build();
-    }
+    @Autowired
+    RestTemplate restTemplate ;
 
     public String analyzeText(String journals) throws Exception {
-        // Construct the Prompt
+
+
+        // Construct the prompt
         String prompt = Placeholders.AiPrompt + String.join("\n", journals);
 
         // Create JSON request body
@@ -40,32 +37,46 @@ public class AIService {
 
         JSONObject requestBody = new JSONObject();
         requestBody.put("model", "open-mistral-7b");
-        requestBody.put("messages", messagesArray); // Add messages array to the body
+        requestBody.put("messages", messagesArray);
 
-
+        // Log the request body
         System.out.println("Request Body: " + requestBody.toString());
 
-        try {
-            // Make the HTTP call using WebClient
-            String response = webClient.post()
-                    .uri("") // No path because baseUrl is already set
-                    .header("Authorization", "Bearer " + apiKey)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .bodyValue(requestBody.toString())
-                    .retrieve()
-                    .bodyToMono(String.class)               // Parse the response as a string
-                    .block(); // Block for a synchronous call
+        // Set headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Authorization", "Bearer " + apiKey);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
-            // Parse the response
-            JSONObject jsonResponse = new JSONObject(response);
+        // Create HttpEntity with request body and headers
+        HttpEntity<String> entity = new HttpEntity<>(requestBody.toString(), headers);
+
+        try {
+            // Send the POST request
+            ResponseEntity<String> response = restTemplate.exchange(
+                    Placeholders.MISTRAL_URL,
+                    HttpMethod.POST,
+                    entity,
+                    String.class
+            );
+
+            // Check response status
+            if (response.getStatusCode() != HttpStatus.OK) {
+                throw new Exception("Request failed: " + response.getStatusCode() + " - " + response.getBody());
+            }
+
+            // Parse the response body
+            JSONObject jsonResponse = new JSONObject(response.getBody());
+
             return jsonResponse
                     .getJSONArray("choices")
                     .getJSONObject(0)
                     .getJSONObject("message")
-                    .getString("content");
+                    .getString("content");                      // returning the specific message to the email
+
         } catch (Exception e) {
-            throw new Exception("Error occurred during API call: " + e.getMessage(), e);
+            throw new Exception("Error during API call: " + e.getMessage(), e);
         }
     }
 }
+
