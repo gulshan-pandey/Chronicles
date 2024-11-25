@@ -4,13 +4,13 @@ public interface Placeholders  {
 
 //    Interface variables are implicitly public, static, and final, making them accessible from any class.
 
-    String API_KEY = "<KEY>";
+    public static final String WEATHER_API_KEY = "<KEY>";
 
-    String CITY = "<CITY>";
+    public static final String CITY = "<CITY>";
 
-    String QUOTE_API = "http://api.quotable.io/quotes/random" ;
+    public static final String QUOTE_API = "http://api.quotable.io/quotes/random";
 
-    public static final String MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions";
+    public static final String MISTRAL_URL = "https://api.mistral.ai/v1/chat/completions";
 
     public static String AiPrompt = "Please analyze these personal journal entries to create an emotional wellness snapshot. For each entry, consider:\n" +
             "- Mood rating (1-10 scale)\n" +
@@ -24,7 +24,7 @@ public interface Placeholders  {
             "3. Notable patterns in triggers/situations\n" +
             "4. Potential areas for emotional growth\n" +
             "\n" +
-            "also mention Note: These insights are private and personalized for your reflection only. Your privacy and confidentiality are paramount.\n" +
+            "also in the end mention Note: These insights are private and personalized for your reflection only. Your privacy and confidentiality are paramount.\n" +
             "\n" + "Journal Entries:\n";
 
 

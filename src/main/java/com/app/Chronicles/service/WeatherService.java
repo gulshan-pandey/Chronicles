@@ -32,7 +32,7 @@ public class WeatherService {
         if(weather != null){
             return weather;             // returning the weather object from cache(redis)
         }else{
-        String finalApi = appCache.cache.get(AppCache.Keys.WEATHER_API.toString()).replace(Placeholders.CITY, city).replace(Placeholders.API_KEY, Apikey);
+        String finalApi = appCache.cache.get(AppCache.Keys.WEATHER_API.toString()).replace(Placeholders.CITY, city).replace(Placeholders.WEATHER_API_KEY, Apikey);
 
         ResponseEntity<Weather> response = restTemplate.exchange(finalApi, HttpMethod.GET, null, Weather.class);
         // the process of converting JSON response into corresponding POJO is called deserialization

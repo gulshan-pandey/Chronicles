@@ -34,8 +34,8 @@ public class UserScheduler {
     AIService aiService;
 
 
-//    @Scheduled(cron = "0 * * * * *")        // run every minute
-    @Scheduled(cron = "0 0 8 * * 0")      // run every Sunday at 8am
+    @Scheduled(cron = "0 * * * * *")        // run every minute
+//    @Scheduled(cron = "0 0 8 * * 0")      // run every Sunday at 8am
     public void fetchUserForSA(){
             List<User> users =userRepoImpl.getUserForSA();
         for (User user : users) {
