@@ -1,6 +1,6 @@
 # Chronicles
 
-Chronicles is a comprehensive and secure journal application backend designed to enable users to effortlessly store, manage, and analyze their personal journal entries. Built with state-of-the-art technologies and a strong emphasis on modularity, Chronicles ensures seamless integration, enhanced security, and a host of insightful features, providing users with an unparalleled journaling experience.
+Chronicles is a comprehensive and secure journal application backend designed to enable users to effortlessly store, manage, and analyze their personal journal entries. Built with state-of-the-art technologies such as Spring Boot, Spring Security, Redis, MongoDB, Swagger, Kafka, and email automation for sending notifications, Chronicles ensures seamless integration, enhanced security, and a host of insightful features. With a strong emphasis on modularity, it provides users with an unparalleled journaling experience.
 
 ---
 
